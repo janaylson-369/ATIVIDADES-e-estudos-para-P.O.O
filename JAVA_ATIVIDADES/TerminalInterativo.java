@@ -79,3 +79,129 @@ public class TerminalInterativo {
     }
 }
 
+
+private int codigo, energia, aura;
+    private String nome;
+
+    public Guerreiro(int codigo, String nome) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.energia = 100;
+        this.aura = 0;
+    }
+
+    public int getcodigo() {
+        return codigo;
+    }
+
+    public String getnome() {
+        return nome;
+    }
+
+    public int getenergia() {
+        return energia;
+    }
+
+    public int incremento() {
+
+        if (energia < 5) {
+            energia++;
+        } else {
+            System.out.println(" energia cheia");
+        }
+        return energia;
+    }
+
+    public int dencremento() {
+        if (energia > 0) {
+            energia--;
+            if (energia == 0) {
+                System.out.println(nome + " está sem energia!");
+            }
+        }
+        return energia;
+    }
+
+    //F
+    public int alimentarse() {
+        return incremento();
+    }
+
+    //G
+    public int atacar() {
+        Random gerador = new Random();
+        return gerador.nextInt(2);
+    }
+    public int atkEspecial(){
+        Random kamehamehaaa = new Random();
+        return kamehamehaaa.nextInt(4);
+    }
+
+    /*h) o método lutar recebe por parâmetro o guerreiro oponente e deve reduzir a energia de um guerreiro
+    a cada ataque com sucesso de seu oponente (use o método decremento do item e). O método lutar deve chamar
+    o método atacar de cada guerreiro e exibir o vencedor quando a energia de um dos guerreiros chegar a zero.
+    */
+    
+    public void lutar(Guerreiro oponente) {
+        while (true) {
+            if (this.atacar() == 1) {
+                System.out.println(this.getnome() + " ataca com SUCESSO!");
+                oponente.dencremento();
+            } else {
+                System.out.println(this.getnome() + " ataca e... ERROU!");
+            }
+
+            if (oponente.atacar() == 1) {
+                System.out.println(oponente.getnome() + " ataca com SUCESSO!");
+                this.dencremento();
+            } else {
+                System.out.println(oponente.getnome() + " ataca e... ERROU!");
+            }
+
+            if (this.getenergia() == 0) {
+                System.out.println("\n E VENCEDOR É: " + oponente.nome + "!");
+                break;
+            }else if (oponente.getenergia() == 0){
+                System.out.println("\n E VENCEDOR É: " +  this.nome + "!");
+                break;
+            }
+
+        }
+
+    }
+    
+
+    // h2 Lutar com recursividade
+    public void lutarRecursiva(Guerreiro oponente) {
+
+        if (atacar() == 1) {
+            oponente.dencremento();
+            System.out.println(this.nome + " atacou com sucesso!");
+        } else {
+            System.out.println(this.nome + " errou o ataque!");
+        }
+
+        // turno do guerreiro 2
+        if (oponente.energia > 0 && oponente.atacar() == 1) {
+            this.dencremento();
+            System.out.println(oponente.nome + " atacou com sucesso!");
+        } else if (oponente.energia > 0) {
+            System.out.println(oponente.nome + " errou o ataque!");
+        }
+        // conndição do fim da luta
+        if (energia == 0 || oponente.energia == 0) {
+            if (energia == 0) {
+                System.out.println( oponente.nome + " venceu a luta!");
+            } else {
+                System.out.println(nome + " venceu a luta!");
+            }
+            return;
+        }
+        lutarRecursiva(oponente);
+    }
+
+    
+    public String toString() {
+        return "Guerreiro: Código: " + this.codigo + ", Nome: " + this.nome + ", Energia: " + this.energia + "";
+    }
+
