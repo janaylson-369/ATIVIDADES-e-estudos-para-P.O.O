@@ -78,11 +78,11 @@ public class Jogador {
     // das armas do Jogador 1 à sua matriz correspondente; 
     public void posicionarArmas(Scanner sc) {
         
-        System.out.println(nome + " - Posicione 1 submarinos (s)");
-        posicionar(sc, 's', 1); 
+        System.out.println(nome + " - Posicione 3 submarinos (s)");
+        posicionar(sc, 's', 3); 
 
-        System.out.println(nome + " - Posicione 1 cruzadores (c)");
-        posicionar(sc, 'c', 1); 
+        System.out.println(nome + " - Posicione 2 cruzadores (c)");
+        posicionar(sc, 'c', 2); 
 
         System.out.println(nome + " - Posicione 1 porta-aviões (p)");
         posicionar(sc, 'p', 1);
