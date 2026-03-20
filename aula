@@ -1,0 +1,89 @@
+-- Database: atividadejay
+
+-- DROP DATABASE IF EXISTS atividadejay;
+
+CREATE DATABASE atividadejay
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'pt_BR.UTF-8'
+    LC_CTYPE = 'pt_BR.UTF-8'
+    LOCALE_PROVIDER = 'libc'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
+create table motorista (
+	codMot integer primary key,
+	cpf numeric(11),
+	cnh numeric(10),
+	nome varchar(50) ,
+	endereco varchar(100)
+	
+	
+);
+
+create table entrega (
+	hora time primary key,
+	data date primary key,
+	placa char(7),
+	cod integer
+	
+);
+
+create table veiculo(
+	placa char(7) primary key,
+	capacidade integer
+);
+
+codpro
+create table venda(
+	numven integer,
+	valor_total numeric (11,2),
+	codcdd integer,
+	codclient integer
+	codprocodpro
+);
+create table cliente(
+	codclient integer primary key,
+	nome varchar(50),
+	endereco varchar(100),
+	tel char(10),
+	email varchar(50),
+	cpf numeric(11)
+	
+);
+create table produto(
+	codpro integer primary key,
+	custo numeric(11,2),
+	descricao text,
+	preco numeric(11,2),
+	nome varchar(50)
+	
+);
+create table vendedor(
+	codvdd integer primary key,
+	cpf numeric(11),
+	v_comissao numeric(4,2),
+	nome varchar(50),
+	endereco varchar(100)
+);
+
+create table item_venda(
+	codpro integer,
+	numven integer,
+	vunitario numeric(11,2),
+	qtd integer,
+	foreign key (produto) references (codpro),
+	foreign key (venda) references (numven)
+)
+
+
+insert into motorista (codMot,cpf, cnh, nome, endereco) 
+values (1,12345, 54321, 'zé da MANGA', 'rua da manga' ),
+		(2,26526,02638,'han oruam', 'rio de januario'),
+		(3, 89348, 23348, 'jayson', 'paraiba')
+
+
+
+
